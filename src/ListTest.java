@@ -1,38 +1,18 @@
 import static javax.swing.UIManager.get;
 
 public class ListTest {
-
-
-
-
     public static void main(String[] args) {
-        MyArrayList<String> deliveryCities = new MyArrayList();
-
-        deliveryCities.add("Chicago");
-        deliveryCities.add("New York");
-        deliveryCities.add("Toronto");
-        deliveryCities.add("Paris");
-        deliveryCities.add("Warsaw");
-
-        String name = deliveryCities.get(3);
+        MyArrayList<String> myArrayList = new MyArrayList();
+        myArrayList.add("Chicago");
+        myArrayList.add("New York");
+        myArrayList.add("Toronto");
+        myArrayList.add("Paris");
+        myArrayList.add("Warsaw");
+        String name = myArrayList.get(3);
         System.out.println(name);
-
-
-
-
-
-        System.out.println(deliveryCities.size());
-
-
-
-        System.out.println(deliveryCities.remove(3));
-        System.out.println(deliveryCities.size());
-        deliveryCities.clear();
-
-
-
-
+        System.out.println(myArrayList.size());
+        System.out.println(myArrayList.remove(3));
+        System.out.println(myArrayList.size());
+        myArrayList.clear();
     }
-
-
-    }
+}
