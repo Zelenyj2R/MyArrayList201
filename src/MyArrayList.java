@@ -1,30 +1,39 @@
+import java.util.Arrays;
+
 public class MyArrayList<L> {
-    private Object[] myArrayList = new Object[10];
+    private static int capacity = 10;
+    private Object[] myArrayList = new Object[capacity];
     private int position = 0;
-    public void add(L value) {
-        myArrayList[position] = value;
-        System.out.println(position + "  " + myArrayList[position]);
-        position++;
+    private int size;
+    private void grow() {
+        myArrayList = Arrays.copyOf(myArrayList, capacity *= 1.5);
+    }
+    public void add(Object value) {
+        if (size == capacity) {
+            grow();
+        }
+        myArrayList[size] = value;
+        size++;
     }
     public L get(int position) {
         return (L) myArrayList[position];
     }
     public int size() {
-        return position;
+        return size;
     }
-    public void clear() {
-        for (int i = 0; i <= position; i++) {
-            myArrayList[position] = null;
-        }
-        position = 0;
+    public String clear() {
+        Object [] AnotherArr = new Object[capacity];
+        myArrayList =  AnotherArr;
+        size = 0;
+        return null;
     }
     public boolean remove(int index) {
-        if (index < position) {
-            for (int i = index; i < position; i++) {
+        if (index < size) {
+            for (int i = index; i < size; i++) {
                 myArrayList[i] = myArrayList[i + 1];
             }
-            myArrayList[position] = null;
-            position--;
+            myArrayList[size] = null;
+            size--;
             return true;
         } else {
             return false;
