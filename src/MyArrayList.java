@@ -1,9 +1,9 @@
 import java.util.Arrays;
 
-public class MyArrayList<L> {
+public class myarraylist<L> {
     private static int capacity = 10;
     private Object[] myArrayList = new Object[capacity];
-    private int position = 0;
+
     private int size;
     private void grow() {
         myArrayList = Arrays.copyOf(myArrayList, capacity *= 1.5);
@@ -15,28 +15,36 @@ public class MyArrayList<L> {
         myArrayList[size] = value;
         size++;
     }
-    public L get(int position) {
-        return (L) myArrayList[position];
+    public L get(int index) {
+        if(index < size){
+            return (L) myArrayList[index];
+        } else {
+            throw new ArrayIndexOutOfBoundsException();
+        }
     }
+
     public int size() {
         return size;
     }
-    public String clear() {
-        Object [] AnotherArr = new Object[capacity];
-        myArrayList =  AnotherArr;
+    public void clear() {
+        myArrayList =  new Object[capacity];
         size = 0;
-        return null;
     }
-    public boolean remove(int index) {
-        if (index < size) {
-            for (int i = index; i < size; i++) {
-                myArrayList[i] = myArrayList[i + 1];
+
+    public Object remove(int index) {
+        if(index < size){
+            Object obj = myArrayList[index];
+            myArrayList[index] = null;
+            int y = index;
+            while(y < size){
+                myArrayList[y] = myArrayList[y+1];
+                myArrayList[y+1] = null;
+                y++;
             }
-            myArrayList[size] = null;
             size--;
-            return true;
+            return  obj;
         } else {
-            return false;
+            throw new ArrayIndexOutOfBoundsException();
         }
     }
 }
